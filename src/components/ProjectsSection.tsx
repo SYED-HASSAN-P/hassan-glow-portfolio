@@ -1,29 +1,81 @@
 import { ExternalLink, Github, ArrowRight } from 'lucide-react';
+import { useState } from 'react';
+import ProjectDetailsModal from './ProjectDetailsModal';
 
 const ProjectsSection = () => {
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const projects = [
     {
       title: "Fee Sync",
       description: "A college fee management software developed with PHP and MySQL to automate financial processes and improve transparency.",
+      fullDescription: "Fee Sync is a comprehensive fee management system designed for Meena Shah Institute of Technology and Management (MSITM). This web-based application streamulates the entire fee collection process, from student registration to payment tracking and receipt generation.",
       technologies: ["PHP", "MySQL", "JavaScript", "Bootstrap"],
       category: "Web Application",
-      highlight: "College Management System"
+      highlight: "College Management System",
+      features: [
+        "Automated fee calculation and tracking",
+        "Student registration and profile management",
+        "Payment processing and receipt generation",
+        "Administrative dashboard with analytics",
+        "Real-time payment status updates",
+        "Secure user authentication system"
+      ],
+      duration: "3 months",
+      teamSize: "Solo Project",
+      githubUrl: "#",
+      liveUrl: "#"
     },
     {
       title: "Travel Management System", 
       description: "A Java-based desktop application with a MySQL backend for managing bookings and schedules, featuring user login and data validation.",
+      fullDescription: "A comprehensive desktop application built with Java Swing that manages travel bookings, schedules, and customer information. The system features a robust backend with MySQL database integration and includes advanced data validation and user management capabilities.",
       technologies: ["Java", "MySQL", "Swing", "JDBC"],
       category: "Desktop Application",
-      highlight: "Booking & Scheduling"
+      highlight: "Booking & Scheduling",
+      features: [
+        "User authentication and role-based access",
+        "Travel booking and reservation management",
+        "Schedule management and conflict detection",
+        "Customer profile and history tracking",
+        "Data validation and error handling",
+        "Report generation and analytics"
+      ],
+      duration: "2 months",
+      teamSize: "2 developers",
+      githubUrl: "#"
     },
     {
       title: "Portfolio Management System",
       description: "A financial investment tracker built using Java, Spring Boot, and MySQL. Thoroughly tested with regression and integration testing.",
+      fullDescription: "A sophisticated financial portfolio management system that tracks investments, analyzes performance, and provides detailed reporting. Built with Spring Boot for robust backend architecture and includes comprehensive testing coverage.",
       technologies: ["Java", "Spring Boot", "MySQL", "JUnit"],
       category: "Financial Software", 
-      highlight: "Investment Tracking"
+      highlight: "Investment Tracking",
+      features: [
+        "Investment portfolio tracking and analysis",
+        "Real-time performance monitoring",
+        "Risk assessment and reporting",
+        "Transaction history and categorization",
+        "Comprehensive unit and integration testing",
+        "RESTful API design and implementation"
+      ],
+      duration: "4 months",
+      teamSize: "3 developers",
+      githubUrl: "#"
     }
   ];
+
+  const openModal = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedProject(null);
+    setIsModalOpen(false);
+  };
 
   return (
     <section id="projects" className="section-padding bg-card/30">
@@ -56,10 +108,16 @@ const ProjectsSection = () => {
                   </div>
                 </div>
                 <div className="flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors cursor-pointer">
+                  <div 
+                    onClick={() => project.liveUrl && window.open(project.liveUrl, '_blank')}
+                    className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors cursor-pointer"
+                  >
                     <ExternalLink className="w-4 h-4 text-primary" />
                   </div>
-                  <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors cursor-pointer">
+                  <div 
+                    onClick={() => project.githubUrl && window.open(project.githubUrl, '_blank')}
+                    className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center hover:bg-primary/20 transition-colors cursor-pointer"
+                  >
                     <Github className="w-4 h-4 text-primary" />
                   </div>
                 </div>
@@ -83,7 +141,10 @@ const ProjectsSection = () => {
               </div>
 
               {/* Action */}
-              <div className="flex items-center text-primary font-medium group-hover:translate-x-2 transition-transform duration-300">
+              <div 
+                onClick={() => openModal(project)}
+                className="flex items-center text-primary font-medium group-hover:translate-x-2 transition-transform duration-300 cursor-pointer"
+              >
                 <span className="text-sm mr-2">View Details</span>
                 <ArrowRight className="w-4 h-4" />
               </div>
@@ -105,6 +166,13 @@ const ProjectsSection = () => {
           </a>
         </div>
       </div>
+
+      {/* Project Details Modal */}
+      <ProjectDetailsModal 
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={closeModal}
+      />
     </section>
   );
 };
