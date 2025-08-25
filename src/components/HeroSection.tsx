@@ -32,8 +32,7 @@ const HeroSection = () => {
             As a motivated and detail-oriented Software Developer, I specialize in 
             <span className="text-primary"> web development</span>, 
             <span className="text-primary"> database management</span>, and 
-            <span className="text-primary"> API testing</span>. I have hands-on experience in these areas and am passionate about applying my skills in a growth-oriented organization. My professional background includes designing and deploying a fee management software called "Fee Sync" at the Meena Shah Institute of Technology and Management (MSITM). I also maintained the college website and built APIs for user authentication and data exchange. In addition, my internship at CodeSoft gave me experience developing Java-based applications with MySQL database connectivity and conducting API testing using Postman. With a solid foundation in PHP, MySQL, and Postman, I am eager to take on new challenges and master the 
-            <span className="text-primary"> Laravel framework</span> to create scalable, reliable web applications.
+            <span className="text-primary"> API testing</span>. I have hands-on experience in these areas and am passionate about applying my skills in a growth-oriented organization.
           </p>
 
           {/* CTA Button */}
