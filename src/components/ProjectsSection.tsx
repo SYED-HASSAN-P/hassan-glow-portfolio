@@ -24,8 +24,8 @@ const ProjectsSection = () => {
       ],
       duration: "3 months",
       teamSize: "Solo Project",
-      githubUrl: "#",
-      liveUrl: "#"
+      githubUrl: "https://github.com/SYED-HASSAN-P/FeeSync.git",
+      liveUrl: "https://github.com/SYED-HASSAN-P/FeeSync.git"
     },
     {
       title: "Travel Management System", 
@@ -44,7 +44,7 @@ const ProjectsSection = () => {
       ],
       duration: "2 months",
       teamSize: "2 developers",
-      githubUrl: "#"
+      githubUrl: "https://github.com/SYED-HASSAN-P/Travel-Management-System.git"
     },
     {
       title: "Portfolio Management System",
@@ -63,7 +63,7 @@ const ProjectsSection = () => {
       ],
       duration: "4 months",
       teamSize: "3 developers",
-      githubUrl: "#"
+      githubUrl: "https://github.com/SYED-HASSAN-P/Portfolio-System.git"
     }
   ];
 

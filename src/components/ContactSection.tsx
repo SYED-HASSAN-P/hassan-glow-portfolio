@@ -1,6 +1,12 @@
 import { Mail, Linkedin, Phone, MapPin, Send } from 'lucide-react';
+import emailjs from '@emailjs/browser'; // ✅ Import EmailJS
+import { useRef, useState } from 'react'; // ✅ For form handling
 
 const ContactSection = () => {
+  const form = useRef(); // ✅ Reference to form
+  const [loading, setLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+
   const contactInfo = [
     {
       icon: <Mail className="w-6 h-6" />,
@@ -27,6 +33,33 @@ const ContactSection = () => {
       href: null
     }
   ];
+
+  // ✅ Send email using EmailJS
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatusMessage("");
+
+    emailjs
+      .sendForm(
+        "service_06i2nfv",     // 🔴 Replace with your EmailJS Service ID
+        "template_p6itdux",    // 🔴 Replace with your EmailJS Template ID
+        form.current,
+        "BfZKo5NCQgV7hz16M"      // 🔴 Replace with your EmailJS Public Key
+      )
+      .then(
+        () => {
+          setLoading(false);
+          setStatusMessage("✅ Message sent successfully!");
+          form.current.reset(); // Clear form after sending
+        },
+        (error) => {
+          setLoading(false);
+          setStatusMessage("❌ Failed to send message. Try again.");
+          console.error(error.text);
+        }
+      );
+  };
 
   return (
     <section id="contact" className="section-padding">
@@ -106,7 +139,8 @@ const ContactSection = () => {
             <div className="bg-card/50 rounded-2xl p-8 border border-border">
               <h3 className="text-xl font-bold text-foreground mb-6">Send a Message</h3>
               
-              <form className="space-y-6">
+              {/* ✅ Added ref and onSubmit */}
+              <form ref={form} onSubmit={sendEmail} className="space-y-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-text-secondary mb-2">
                     Your Name
@@ -114,8 +148,10 @@ const ContactSection = () => {
                   <input 
                     type="text" 
                     id="name"
+                    name="user_name"   // ✅ Needed for EmailJS
                     className="w-full px-4 py-3 bg-input border border-border rounded-lg text-foreground placeholder:text-text-muted focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors duration-300"
                     placeholder="John Doe"
+                    required
                   />
                 </div>
                 
@@ -126,8 +162,10 @@ const ContactSection = () => {
                   <input 
                     type="email" 
                     id="email"
+                    name="user_email"  // ✅ Needed for EmailJS
                     className="w-full px-4 py-3 bg-input border border-border rounded-lg text-foreground placeholder:text-text-muted focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors duration-300"
                     placeholder="john@example.com"
+                    required
                   />
                 </div>
                 
@@ -137,19 +175,27 @@ const ContactSection = () => {
                   </label>
                   <textarea 
                     id="message"
+                    name="message"   // ✅ Needed for EmailJS
                     rows={4}
                     className="w-full px-4 py-3 bg-input border border-border rounded-lg text-foreground placeholder:text-text-muted focus:border-primary focus:ring-1 focus:ring-primary focus:outline-none transition-colors duration-300 resize-none"
                     placeholder="Tell me about your project..."
+                    required
                   ></textarea>
                 </div>
                 
                 <button 
                   type="submit"
                   className="w-full btn-hero justify-center group"
+                  disabled={loading}
                 >
-                  Send Message
+                  {loading ? "Sending..." : "Send Message"}
                   <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
+
+                {/* ✅ Status Message */}
+                {statusMessage && (
+                  <p className="text-sm mt-2 text-center">{statusMessage}</p>
+                )}
               </form>
             </div>
           </div>
