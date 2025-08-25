@@ -1,11 +1,11 @@
 import { Mail, Linkedin, Phone, MapPin, Send } from 'lucide-react';
 import emailjs from '@emailjs/browser'; // ✅ Import EmailJS
 import { useRef, useState } from 'react'; // ✅ For form handling
+import { toast } from "sonner"; // ✅ Sonner notifications
 
 const ContactSection = () => {
-  const form = useRef(); // ✅ Reference to form
+  const form = useRef<HTMLFormElement>(null); // ✅ Reference to form
   const [loading, setLoading] = useState(false);
-  const [statusMessage, setStatusMessage] = useState("");
 
   const contactInfo = [
     {
@@ -35,27 +35,26 @@ const ContactSection = () => {
   ];
 
   // ✅ Send email using EmailJS
-  const sendEmail = (e) => {
+  const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setStatusMessage("");
 
     emailjs
       .sendForm(
         "service_06i2nfv",     // 🔴 Replace with your EmailJS Service ID
         "template_p6itdux",    // 🔴 Replace with your EmailJS Template ID
-        form.current,
-        "BfZKo5NCQgV7hz16M"      // 🔴 Replace with your EmailJS Public Key
+        form.current!,
+        "BfZKo5NCQgV7hz16M"    // 🔴 Replace with your EmailJS Public Key
       )
       .then(
         () => {
           setLoading(false);
-          setStatusMessage("✅ Message sent successfully!");
-          form.current.reset(); // Clear form after sending
+          toast.success("🚀 Message sent successfully! I'll connect with you soon.");
+          form.current?.reset(); // Clear form after sending
         },
         (error) => {
           setLoading(false);
-          setStatusMessage("❌ Failed to send message. Try again.");
+          toast.error("❌ Failed to send message. Please try again.");
           console.error(error.text);
         }
       );
@@ -191,11 +190,6 @@ const ContactSection = () => {
                   {loading ? "Sending..." : "Send Message"}
                   <Send className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </button>
-
-                {/* ✅ Status Message */}
-                {statusMessage && (
-                  <p className="text-sm mt-2 text-center">{statusMessage}</p>
-                )}
               </form>
             </div>
           </div>
