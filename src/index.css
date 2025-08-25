@@ -2,95 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Hassan's Portfolio Design System - Dark theme with electric blue accents */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Dark Portfolio Theme */
+    --background: 220 15% 8%;
+    --foreground: 210 20% 92%;
+    
+    --card: 220 15% 10%;
+    --card-foreground: 210 20% 88%;
+    
+    --popover: 220 15% 12%;
+    --popover-foreground: 210 20% 90%;
+    
+    /* Electric Blue Primary */
+    --primary: 195 100% 50%;
+    --primary-foreground: 220 15% 8%;
+    --primary-glow: 195 100% 65%;
+    
+    /* Dark Grays */
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 210 20% 85%;
+    
+    --muted: 220 15% 18%;
+    --muted-foreground: 210 15% 60%;
+    
+    --accent: 195 100% 50%;
+    --accent-foreground: 220 15% 8%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 20% 98%;
+    
+    --border: 220 15% 20%;
+    --input: 220 15% 18%;
+    --ring: 195 100% 50%;
+    
+    --radius: 0.75rem;
+    
+    /* Portfolio specific tokens */
+    --text-primary: 210 20% 92%;
+    --text-secondary: 210 15% 75%;
+    --text-muted: 210 10% 55%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(195 100% 50%), hsl(195 100% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 15% 8%) 0%, hsl(220 15% 12%) 50%, hsl(220 15% 8%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 15% 10%), hsl(220 15% 12%));
+    
+    /* Shadows and Effects */
+    --shadow-glow: 0 0 20px hsl(195 100% 50% / 0.3);
+    --shadow-card: 0 8px 32px hsl(220 15% 4% / 0.5);
+    --shadow-hero: 0 0 40px hsl(195 100% 50% / 0.1);
+    
+    /* Animation timings */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
 }
 
@@ -98,8 +66,153 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
+  
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-text-primary;
+  }
+  
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  /* Matrix Animation Background */
+  .matrix-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.1;
+  }
+  
+  .matrix-column {
+    position: absolute;
+    top: -100px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: hsl(var(--primary));
+    text-shadow: 0 0 5px currentColor;
+    white-space: pre;
+    line-height: 1.2;
+    animation: matrix-fall linear infinite;
+  }
+  
+  @keyframes matrix-fall {
+    0% { transform: translateY(-100px); }
+    100% { transform: translateY(100vh); }
+  }
+  
+  /* Glowing text effect */
+  .glow-text {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+  
+  /* Hero button styles */
+  .btn-hero {
+    @apply relative px-8 py-4 bg-transparent border-2 border-primary text-primary font-medium rounded-lg;
+    @apply hover:bg-primary hover:text-primary-foreground transition-all duration-300;
+    @apply before:absolute before:inset-0 before:bg-gradient-primary before:rounded-lg before:opacity-0;
+    @apply hover:before:opacity-20 before:transition-opacity before:duration-300;
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.2);
+  }
+  
+  .btn-hero:hover {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Navigation link styles */
+  .nav-link {
+    @apply relative text-text-secondary hover:text-primary transition-colors duration-300;
+    @apply after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5;
+    @apply after:bg-primary after:transition-all after:duration-300;
+    @apply hover:after:w-full;
+  }
+  
+  /* Card hover effects */
+  .card-interactive {
+    @apply bg-card border border-border rounded-xl p-6;
+    @apply hover:border-primary/30 transition-all duration-300;
+    @apply hover:shadow-card hover:transform hover:scale-105;
+    background: var(--gradient-card);
+  }
+  
+  /* Skill tag styles */
+  .skill-tag {
+    @apply px-4 py-2 bg-secondary text-secondary-foreground rounded-lg;
+    @apply border border-border hover:border-primary/50 transition-all duration-300;
+    @apply hover:bg-primary/10 hover:text-primary;
+  }
+  
+  /* Section spacing */
+  .section-padding {
+    @apply py-20 px-6 lg:px-12 xl:px-20;
+  }
+  
+  /* Fade in animations */
+  .fade-in {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.5);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-inter antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-text-primary;
+  }
+  
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .font-mono {
+    font-family: 'JetBrains Mono', monospace;
   }
 }
